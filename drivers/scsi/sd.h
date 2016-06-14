@@ -69,7 +69,6 @@ struct scsi_disk {
 	atomic_t	openers;
 	sector_t	capacity;	/* size in 512-byte sectors */
 	u32		max_xfer_blocks;
-	u32		opt_xfer_blocks;
 	u32		max_ws_blocks;
 	u32		max_unmap_blocks;
 	u32		unmap_granularity;
@@ -102,7 +101,7 @@ struct scsi_disk {
           * allow extending the structure while preserving ABI.
           */
 
-        UEK_KABI_RESERVED(1)
+	UEK_KABI_USE2(1, u32 opt_xfer_blocks, u32 unuse);
         UEK_KABI_RESERVED(2)
 };
 #define to_scsi_disk(obj) container_of(obj,struct scsi_disk,dev)
